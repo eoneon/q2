@@ -1,0 +1,12 @@
+<%= form_for [@category, @item_field] do |f| %>
+  <div class="field">
+    <%= f.label :field_type %><br>
+    <%= f.select :field_type, %w[text_field check_box number_field text_area], include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :field_name %><br>
+    <%= f.text_field :field_name %>
+  </div>
+  <%= f.submit "Save" %>
+<% end %>

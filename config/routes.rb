@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  resources :categories
+  resources :categories do
+    resources :item_fields
+  end
+
+  root to: 'categories#index'
 end

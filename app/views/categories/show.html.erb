@@ -2,21 +2,22 @@
 
 <p><%= link_to "Edit category", edit_category_path(@category) %> | <%= link_to "Return to Category List", categories_path %></p><br>
 
-<p><%# @category.item_fields %></p>
+<p><% @category.item_fields %></p>
 <table class="table table-striped table-hover">
   <thead>
-    <th>Item Fields</th>
+    <th>Field name</th>
+    <th>Field type</th>
   </thead>
 
   <h4>Build New Item Field</h4>
-  <p><%#= link_to "New Invoice", new_category_item_field_path(@category) %></p>
+  <p><%= link_to "New Field", new_category_item_field_path(@category) %></p>
   <tbody>
-    <%# @category.item_fields.order(:item_field).each do |field| %>
+    <% @category.item_fields.each do |item_field| %>
       <tr>
-        <td><%#= link_to item_field.name, category_item_field_path(item_field.category, item_field) %></td>
-        <td><%#= item_field.try(:name) %></td>
-        <td><%#= link_to 'edit', edit_category_item_field_path(item_field.category, item_field) %> | <%#= link_to 'Delete', item_field, method: :delete %></td>
+        <td><%= link_to item_field.field_name, category_item_field_path(@category, item_field) %></td>
+        <td><%= item_field.field_type %></td>
+        <td><%= link_to 'edit', edit_category_item_field_path([@category, item_field]) %> | <%= link_to 'Delete', [item_field.category, item_field], method: :delete %></td>
       </tr>
-    <%# end %>
+    <% end %>
   </tbody>
 </table>
