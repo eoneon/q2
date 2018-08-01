@@ -33,11 +33,10 @@ class CategoriesController < ApplicationController
 
     if @category.save
       flash[:notice] = "Category was updated successfully."
-      render :edit
     else
       flash.now[:alert] = "Error updated category. Please try again."
-      render :edit
     end
+    render :edit
   end
 
   def destroy

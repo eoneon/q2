@@ -1,0 +1,9 @@
+<div class="media">
+  <div class="media-body">
+    <tr>
+    <td><%= category.kind %></td>
+    <td><%= link_to category.name, category_path(category) %></td>
+    <td><%= link_to 'Edit', edit_category_path(category) %> | <%= link_to 'Delete', category,  method: :delete, remote: true, data: {confirm: "Are you sure?"} %></td>
+    </tr>
+ </div>
+</div>
