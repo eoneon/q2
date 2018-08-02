@@ -1,3 +1,3 @@
 class Category < ApplicationRecord
-  has_many :item_fields
+  has_many :item_fields, dependent: :destroy
 end

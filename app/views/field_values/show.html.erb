@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Field Values:</strong>
+  <%= @field_value.name %>
+</p>
+
+<%= link_to 'Edit', edit_item_field_field_value_path([@field_value.item_field, @field_value]) %> |
+<%= link_to 'Back!', category_item_field_path(@field_value.item_field) %>

@@ -1,0 +1,6 @@
+<h1>Edit Field Values</h1>
+<!-- for #edit, we don't need to instantiate item_field instance variable because it was already assigned to the field_value when it was created, see #new -->
+<%= render 'field_values/form', item_field: @field_value.item_field, field_value: @field_value %>
+
+<%= link_to 'Show', item_field_field_value_path(@field_value.item_field, @field_value) %> |
+<%= link_to 'Back!', category_item_field_path(@field_value.item_field.category, @field_value.item_field) %>

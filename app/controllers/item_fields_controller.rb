@@ -1,13 +1,4 @@
 class ItemFieldsController < ApplicationController
-  # def index
-  #   @item_fields = ItemField.all
-  #   respond_to do |format|
-  #     format.html
-  #     format.csv { send_data @item_fields.to_csv }
-  #     format.xls { send_data @item_fields.to_csv(col_sep: "\t") }
-  #   end
-  # end
-
   def show
     @item_field = ItemField.find(params[:id])
   end
@@ -50,7 +41,7 @@ class ItemFieldsController < ApplicationController
     @item_field = ItemField.find(params[:id])
 
     if @item_field.destroy
-      flash[:notice] = "\"#{@item_field.name}\" was deleted successfully."
+      flash[:notice] = "\"#{@item_field.field_name}\" was deleted successfully."
       redirect_to action: :index
     else
       flash.now[:alert] = "There was an error deleting the item_field."
