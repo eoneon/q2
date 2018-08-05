@@ -6,6 +6,7 @@ class ItemFieldsController < ApplicationController
   def new
     @category = Category.find(params[:category_id])
     @item_field = ItemField.new
+    #@item_field.category_ids << @category
   end
 
   def edit
@@ -15,8 +16,12 @@ class ItemFieldsController < ApplicationController
   def create
     @category = Category.find(params[:category_id])
     @item_field = @category.item_fields.build(item_field_params)
-
+    field_group = FieldGroup.new
+    field_group.category = @category
+    field_group.item_field = @item_field
+    
     if @item_field.save
+      field_group.save
       flash[:notice] = "ItemField was saved successfully."
     else
       flash.now[:alert] = "Error creating ItemField. Please try again."

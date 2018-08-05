@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180801032821) do
+ActiveRecord::Schema.define(version: 20180804174055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,13 +22,13 @@ ActiveRecord::Schema.define(version: 20180801032821) do
     t.string "kind"
   end
 
-  create_table "elements", force: :cascade do |t|
+  create_table "field_groups", force: :cascade do |t|
     t.bigint "category_id"
-    t.string "field_name"
-    t.string "field_type"
+    t.bigint "item_field_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_elements_on_category_id"
+    t.index ["category_id"], name: "index_field_groups_on_category_id"
+    t.index ["item_field_id"], name: "index_field_groups_on_item_field_id"
   end
 
   create_table "field_values", force: :cascade do |t|
@@ -42,12 +42,9 @@ ActiveRecord::Schema.define(version: 20180801032821) do
   create_table "item_fields", force: :cascade do |t|
     t.string "field_type"
     t.string "field_name"
-    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_item_fields_on_category_id"
   end
 
   add_foreign_key "field_values", "item_fields"
-  add_foreign_key "item_fields", "categories"
 end
