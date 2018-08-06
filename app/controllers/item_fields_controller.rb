@@ -1,4 +1,13 @@
 class ItemFieldsController < ApplicationController
+  def index
+    @item_fields = ItemField.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @item_fields.to_csv }
+      format.xls { send_data @item_fields.to_csv(col_sep: "\t") }
+    end
+  end
+  
   def show
     @item_field = ItemField.find(params[:id])
   end
@@ -19,7 +28,7 @@ class ItemFieldsController < ApplicationController
     field_group = FieldGroup.new
     field_group.category = @category
     field_group.item_field = @item_field
-    
+
     if @item_field.save
       field_group.save
       flash[:notice] = "ItemField was saved successfully."
@@ -54,10 +63,10 @@ class ItemFieldsController < ApplicationController
     end
   end
 
-  # def import
-  #   ItemField.import(params[:file])
-  #   redirect_to item_fields_path, notice: 'ItemField imported.'
-  # end
+  def import
+    ItemField.import(params[:file])
+    redirect_to item_fields_path, notice: 'Item fields imported.'
+  end
 
   private
 
