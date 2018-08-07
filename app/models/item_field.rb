@@ -19,62 +19,62 @@ class ItemField < ApplicationRecord
     %w(flat_mounting original_kind paint_medium substrate_type signature_kind certificate_kind)
   end
 
-  def original_sketch
+  def self.original_sketch
     %w(flat_mounting original_kind sketch_medium substrate_type signature_kind certificate_kind)
   end
 
-  def one_of_a_kind_mixed_media
+  def self.one_of_a_kind_mixed_media
     %w(flat_mounting original_kind mixed_medium substrate_type signature_kind certificate_kind)
   end
 
   #######limited edition
-  def limited_edition_print
+  def self.limited_edition_print
     %w(flat_mounting embellish_medium limited_kind print_medium substrate_type edition_type signature_kind certificate_kind)
   end
 
-  def limited_edition_print_with_leafing
+  def self.limited_edition_print_with_leafing
     %w(flat_mounting embellish_medium limited_kind print_medium substrate_type leafing_medium edition_type signature_kind certificate_kind)
   end
 
-  def limited_edition_print_with_remarque
+  def self.limited_edition_print_with_remarque
     %w(flat_mounting embellish_medium limited_kind print_media substrate_type remarque_media edition_type signature_kind certificate_kind)
   end
 
-  def limited_edition_print_with_leafing_and_remarque
+  def self.limited_edition_print_with_leafing_and_remarque
     %w(flat_mounting embellish_media limited_kind print_medium substrate_type leafing_medium remarque_medium edition_type signature_kind certificate_kind)
   end
 
   #######print
-  def print
+  def self.print
     %w(flat_mounting embellish_medium print_medium substrate_type edition_type signature_kind certificate_kind)
   end
 
-  def print_with_leafing
+  def self.print_with_leafing
     %w(flat_mounting embellish_medium print_medium substrate_type leafing_medium edition_type signature_kind certificate_kind)
   end
 
-  def print_with_remarque
+  def self.print_with_remarque
     %w(flat_mounting embellish_medium print_medium substrate_type remarque_medium edition_type signature_kind certificate_kind)
   end
 
-  def print_with_leafing_and_remarque
+  def self.print_with_leafing_and_remarque
     %w(flat_mounting embellish_medium print_medium substrate_type leafing_medium remarque_medium edition_type signature_kind certificate_kind)
   end
 
   #sculptures
-  def hand_blown_glass
+  def self.hand_blown_glass
     %w(handblown_medium sculpture_kind signature_kind certificate_kind)
   end
 
-  def hand_made_ceramic
+  def self.hand_made_ceramic
     %w(handmade_medium sculpture_kind signature_kind certificate_kind)
   end
 
-  def sculpture
+  def self.sculpture
     %w(sculpture_media sculpture_kind signature_kind certificate_kind)
   end
 
-  def limited_edition_sculpture
+  def self.limited_edition_sculpture
     %w(limited_kind sculpture_medium signature_kind edition_type signature_kind certificate_kind)
   end
 
@@ -83,7 +83,6 @@ class ItemField < ApplicationRecord
   end
 
   def self.category_fields(name)
-    #ItemField.category_name(name).map {|field_group| ItemField.where(name: public_send(field_group))}
     ItemField.where(field_name: ItemField.category_name(name))
   end
 end

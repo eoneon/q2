@@ -4,14 +4,7 @@ class Category < ApplicationRecord
 
   accepts_nested_attributes_for :field_groups, reject_if: proc {|attrs| attrs['item_field_id'].blank?}, allow_destroy: true
 
-  #scope :category_fields, -> {where(field_name: ItemField.original_painting)}
-
-  # def siblings
-  #   Category.all.pluck(:name)
-  # end
-
   def self.category_dropdown
     ["Original Painting", "One-of-a-Kind Mixed-Media", "Original Sketch", "Limited Edition Print", "Limited Edition Print with Leafing", "Limited Edition Print with Remarque", "Limited Edition Print with Leafing and Remarque", "Print", "Print with Leafing", "Print with Remarque", "Print with Leafing and Remarque", "Hand-Blown Glass", "Hand-Made Ceramic", "Limited Edition Sculpture", "Sculpture"]
   end
-
 end

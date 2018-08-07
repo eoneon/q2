@@ -7,15 +7,14 @@ class ItemFieldsController < ApplicationController
       format.xls { send_data @item_fields.to_csv(col_sep: "\t") }
     end
   end
-  
+
   def show
     @item_field = ItemField.find(params[:id])
   end
 
   def new
-    @category = Category.find(params[:category_id])
+    @category = Category.find(params[:category_id]) if params[:category_id]
     @item_field = ItemField.new
-    #@item_field.category_ids << @category
   end
 
   def edit
