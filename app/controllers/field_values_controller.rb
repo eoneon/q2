@@ -1,4 +1,13 @@
 class FieldValuesController < ApplicationController
+  def index
+    @field_values = FieldValue.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @field_values.to_csv }
+      format.xls { send_data @field_values.to_csv(col_sep: "\t") }
+    end
+  end
+
   def show
     @field_value = FieldValue.find(params[:id])
   end
@@ -50,10 +59,10 @@ class FieldValuesController < ApplicationController
     end
   end
 
-  # def import
-  #   FieldValue.import(params[:file])
-  #   redirect_to field_values_path, notice: 'FieldValue imported.'
-  # end
+  def import
+    FieldValue.import(params[:file])
+    redirect_to field_values_path, notice: 'Field Values imported.'
+  end
 
   private
 

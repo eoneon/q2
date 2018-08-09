@@ -4,6 +4,15 @@ class ItemField < ApplicationRecord
 
   has_many :field_values, dependent: :destroy
 
+  def self.to_csv(fields = column_names, options = {})
+    CSV.generate(options) do |csv|
+      csv << fields
+      all.each do |item_field|
+        csv << item_field.attributes.values_at(*fields)
+      end
+    end
+  end
+
   def self.import(file)
     spreadsheet = Roo::Spreadsheet.open(file.path)
     header = spreadsheet.row(1)
@@ -12,6 +21,15 @@ class ItemField < ApplicationRecord
       item_field = find_by(id: row["id"]) || new
       item_field.attributes = row.to_hash
       item_field.save!
+    end
+  end
+
+  def open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when ".csv" then Csv.new(file.path, nil, :ignore)
+    when ".xls" then Excel.new(file.path, nil, :ignore)
+    when ".xlsx" then Excelx.new(file.path, nil, :ignore)
+    else raise "Unknown file type: #{file.original_filename}"
     end
   end
 

@@ -3,4 +3,5 @@
 <%= render 'item_fields/form', item_field: @item_field %>
 
 <%= link_to 'Show', category_item_field_path %> |
-<%= link_to 'Back', category_path %>
+<%= link_to "Back", request.referer.present? ? request.referer : category_path %>
+<%#= link_to 'Back', category_path %>

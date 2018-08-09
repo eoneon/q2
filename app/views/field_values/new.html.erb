@@ -2,4 +2,5 @@
 <!-- for #new, we instantiate item_field instance variable in the controller, see #edit -->
 <%= render 'field_values/form', item_field: @item_field, field_value: @field_value %>
 <!-- likewise, from #new we already have the instantiated item_field which we can use to get its category -->
-<%= link_to 'Return to parent field', [@item_field.category, @item_field] %>
+<%= link_to 'Return to parent field', [@field_value.item_field, @field_value] %>
+<%#= link_to "Back", request.referer.present? ? request.referer : category_path %>
