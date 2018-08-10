@@ -6,16 +6,24 @@
   </div>
 
   <h4>Associated Fields:</h4>
-  <div class="form-check">
-    <% if @category.name %>
-      <%= hidden_field_tag "category[item_field_ids][]", nil %>
-      <% ItemField.category_fields(@category.name).each do |item_field| %>
+  <!-- <div class="form-check">
+    <%# if @category.name %>
+      <%#= hidden_field_tag "category[item_field_ids][]", nil %>
+      <%# ItemField.category_fields(@category.name).each do |item_field| %>
         <div class="custom-control custom-checkbox custom-control-inline">
-          <%= check_box_tag "category[item_field_ids][]", item_field.id, @category.item_field_ids.include?(item_field.id), id: dom_id(item_field), class: "custom-control-input active" %>
-          <%= label_tag dom_id(item_field), item_field.field_name, class: "custom-control-label" %>
+          <%#= check_box_tag "category[item_field_ids][]", item_field.id, @category.item_field_ids.include?(item_field.id), id: dom_id(item_field), class: "custom-control-input active" %>
+          <%#= label_tag dom_id(item_field), item_field.field_name, class: "custom-control-label" %>
+        </div>
+      <%# end %>
+    <%# end %> -->
+
+    <div class="form-check">
+      <% if @category.name %>
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <%= f.collection_check_boxes :item_field_ids, ItemField.category_fields(@category.name), :id, :field_name, class: "custom-control-input form-check" %>
+          <%#= f.label :field_name, class: "form-check-label" %>
         </div>
       <% end %>
-    <% end %>
-  </div>
+    </div>
   <%= f.submit "Save" %>
 <% end %>

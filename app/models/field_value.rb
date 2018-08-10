@@ -1,5 +1,7 @@
 class FieldValue < ApplicationRecord
   belongs_to :item_field, optional: true
+  has_many :value_groups, dependent: :destroy
+  has_many :items, through: :value_groups
 
   def self.to_csv(fields = column_names, options = {})
     CSV.generate(options) do |csv|

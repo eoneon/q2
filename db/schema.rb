@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180810025500) do
+ActiveRecord::Schema.define(version: 20180810171140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,5 +56,16 @@ ActiveRecord::Schema.define(version: 20180810025500) do
     t.index ["category_id"], name: "index_items_on_category_id"
   end
 
+  create_table "value_groups", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "field_value_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["field_value_id"], name: "index_value_groups_on_field_value_id"
+    t.index ["item_id"], name: "index_value_groups_on_item_id"
+  end
+
   add_foreign_key "field_values", "item_fields"
+  add_foreign_key "value_groups", "field_values"
+  add_foreign_key "value_groups", "items"
 end
