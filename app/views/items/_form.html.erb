@@ -1,0 +1,30 @@
+<%= form_for @item, :html => { :class => 'form', :id => 'item_form'} do |f| %>
+  <%#= render "items/hidden", f: f %>
+  <!-- <script type="text/javascript">
+    function submitform(){
+      $('#redirect_location').val(':edit');
+      $('#item_form').submit();
+    }
+  </script> -->
+  <!-- <script type="text/javascript">
+    function reload(){
+      var item_type_id = $('#selectItemtype').val();
+      $('#item_item_type_id').val('item_type_id');
+    }
+  </script> -->
+
+  <div class="form-row">
+    <div class="col-1">
+      <%= f.label :sku %>
+      <%= f.text_field :sku, class: 'form-control' %>
+    </div>
+  </div>
+
+  <%# type_list.each do |type| %>
+    <%#= render "items/type", type: type, f: f %>
+  <%# end %>
+
+  <%#= render "items/properties", parent: @item, f: f %>
+  <%= f.submit "Save" %>
+  </div>
+<% end %>

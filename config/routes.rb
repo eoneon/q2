@@ -19,5 +19,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :items
+
   root to: 'categories#index'
 end
