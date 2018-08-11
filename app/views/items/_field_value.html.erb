@@ -1,0 +1,16 @@
+<%= hidden_field_tag "item[field_value_ids][]", nil %>
+<% item.category.item_fields.each_with_index do |item_field, i| %>
+  <% if ["original_kind", "handmade_medium", "handblown_medium"].include?(item_field.field_name) %>
+    <div class="hidden">
+      <%= select_tag "item[field_value_ids][]", options_from_collection_for_select(item_field.field_values, :id, :name, selected: FieldValue.default_id(item.category.name)) %>
+    </div>
+  <% else %>
+    <div class="form-row">
+      <div class="col">
+        <%= label_tag item_field.field_name %><br>
+        <%= select_tag "item[field_value_ids][]", options_from_collection_for_select(item_field.field_values, :id, :name, selected: item.field_value_ids[i]), { :include_blank => true } %>
+        <%#= select_tag "item[field_value_ids][]", options_from_collection_for_select(item_field.field_values, :id, :name, selected: 29)  %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
