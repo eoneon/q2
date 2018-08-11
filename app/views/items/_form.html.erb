@@ -1,6 +1,7 @@
 <%= form_for @item, :html => { :class => 'form', :id => 'item_form'} do |f| %>
   <%#= render "items/hidden", f: f %>
-  <%= f.hidden_field :field_value_ids %>
+  <%= @item.field_values.pluck(:name) %>
+  <%#= f.hidden_field :field_value_ids %>
   <!-- <script type="text/javascript">
     function submitform(){
       $('#redirect_location').val(':edit');
@@ -29,16 +30,16 @@
   </div>
 
   <% if @item.category_id %>
-    <% @item.category.item_fields.each do |item_field| %>
-      <div class="form-row">
-        <div class="col">
-          <%# item_field.field_values.each do |field_value| %>
-            <%#= field_value.name %>
-          <%# end %>
-          <%= f.label item_field.field_name %>
-          <%= f.collection_select :field_value_ids, item_field.field_values, :id, :name, { class: 'form-control', :include_blank => true } %>
+    <%= hidden_field_tag "item[field_value_ids][]", nil %>
+    <% @item.category.item_fields.each_with_index do |item_field, i| %>
+        <div class="form-row">
+          <div class="col">
+            <%= label_tag item_field.field_name %><br>
+            <%= select_tag "item[field_value_ids][]", options_from_collection_for_select(item_field.field_values, :id, :name, selected: @item.field_value_ids[i]), { :include_blank => true } %>
+            <%#= select_tag "item[field_value_ids][]", options_from_collection_for_select(item_field.field_values, :id, :name, selected: 29) %>
         </div>
       </div>
+      <%# end %>
     <% end %>
   <% end %>
 

@@ -96,8 +96,16 @@ class ItemField < ApplicationRecord
     %w(limited_kind sculpture_medium signature_kind edition_type signature_kind certificate_kind)
   end
 
+  # def self.category_name(name)
+  #   public_send(name.gsub("-", "_").downcase.split(" ").join("_"))
+  # end
+  
   def self.category_name(name)
-    public_send(name.gsub("-", "_").downcase.split(" ").join("_"))
+    public_send(self.format_category_name(name).join("_"))
+  end
+
+  def self.format_category_name(name)
+    name.gsub("-", "_").downcase.split(" ")
   end
 
   def self.category_fields(name)

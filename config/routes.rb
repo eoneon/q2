@@ -19,7 +19,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :items
+  resources :items do
+    resources :field_values, except: [:index]
+  end
 
   root to: 'categories#index'
 end

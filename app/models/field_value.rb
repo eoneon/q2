@@ -3,6 +3,15 @@ class FieldValue < ApplicationRecord
   has_many :value_groups, dependent: :destroy
   has_many :items, through: :value_groups
 
+  scope :original, -> {where(name: "original")}
+  scope :one_of_a_kind, -> {where(name: "one-of-a-kind")}
+  scope :hand_blown_glass, -> {where(name: "hand blown glass")}
+  scope :hand_made_ceramic, -> {where(name: "hand made ceramic")}
+
+  def self.default_id(category_name)
+    self.public_send(category_name.gsub("-", "_").downcase.split(" ").first).pluck(:id).first
+  end
+
   def self.to_csv(fields = column_names, options = {})
     CSV.generate(options) do |csv|
       csv << fields
