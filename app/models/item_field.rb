@@ -34,49 +34,49 @@ class ItemField < ApplicationRecord
   end
 
   def self.original_painting
-    %w(flat_mounting original_kind paint_medium substrate_type signature_kind certificate_kind)
+    %w(mounting_type original_kind paint_medium substrate_type canvas_kind paper_kind board_kind signature_kind certificate_kind)
   end
 
   def self.original_sketch
-    %w(flat_mounting original_kind sketch_medium substrate_type signature_kind certificate_kind)
+    %w(mounting_type original_kind sketch_medium substrate_type signature_kind certificate_kind)
   end
 
   def self.one_of_a_kind_mixed_media
-    %w(flat_mounting original_kind mixed_medium substrate_type signature_kind certificate_kind)
+    %w(mounting_type original_kind mixed_medium substrate_type signature_kind certificate_kind)
   end
 
   #######limited edition
   def self.limited_edition_print
-    %w(flat_mounting embellish_medium limited_kind print_medium substrate_type edition_type signature_kind certificate_kind)
+    %w(mounting_type embellish_medium limited_kind print_medium substrate_type edition_type signature_kind certificate_kind)
   end
 
   def self.limited_edition_print_with_leafing
-    %w(flat_mounting embellish_medium limited_kind print_medium substrate_type leafing_medium edition_type signature_kind certificate_kind)
+    %w(mounting_type embellish_medium limited_kind print_medium substrate_type leafing_medium edition_type signature_kind certificate_kind)
   end
 
   def self.limited_edition_print_with_remarque
-    %w(flat_mounting embellish_medium limited_kind print_media substrate_type remarque_media edition_type signature_kind certificate_kind)
+    %w(mounting_type embellish_medium limited_kind print_media substrate_type remarque_media edition_type signature_kind certificate_kind)
   end
 
   def self.limited_edition_print_with_leafing_and_remarque
-    %w(flat_mounting embellish_media limited_kind print_medium substrate_type leafing_medium remarque_medium edition_type signature_kind certificate_kind)
+    %w(mounting_type embellish_media limited_kind print_medium substrate_type leafing_medium remarque_medium edition_type signature_kind certificate_kind)
   end
 
   #######print
   def self.print
-    %w(flat_mounting embellish_medium print_medium substrate_type edition_type signature_kind certificate_kind)
+    %w(mounting_type embellish_medium print_medium substrate_type edition_type signature_kind certificate_kind)
   end
 
   def self.print_with_leafing
-    %w(flat_mounting embellish_medium print_medium substrate_type leafing_medium edition_type signature_kind certificate_kind)
+    %w(mounting_type embellish_medium print_medium substrate_type leafing_medium edition_type signature_kind certificate_kind)
   end
 
   def self.print_with_remarque
-    %w(flat_mounting embellish_medium print_medium substrate_type remarque_medium edition_type signature_kind certificate_kind)
+    %w(mounting_type embellish_medium print_medium substrate_type remarque_medium edition_type signature_kind certificate_kind)
   end
 
   def self.print_with_leafing_and_remarque
-    %w(flat_mounting embellish_medium print_medium substrate_type leafing_medium remarque_medium edition_type signature_kind certificate_kind)
+    %w(mounting_type embellish_medium print_medium substrate_type leafing_medium remarque_medium edition_type signature_kind certificate_kind)
   end
 
   #sculptures
@@ -96,19 +96,20 @@ class ItemField < ApplicationRecord
     %w(limited_kind sculpture_medium signature_kind edition_type signature_kind certificate_kind)
   end
 
-  # def self.category_name(name)
-  #   public_send(name.gsub("-", "_").downcase.split(" ").join("_"))
-  # end
-  
   def self.category_name(name)
-    public_send(self.format_category_name(name).join("_"))
+    public_send(name.gsub("-", "_").downcase.split(" ").join("_"))
   end
 
-  def self.format_category_name(name)
-    name.gsub("-", "_").downcase.split(" ")
-  end
+  # def self.category_name(name)
+  #   public_send(self.format_category_name(name).join("_"))
+  # end
+  #
+  # def self.format_category_name(name)
+  #   name.gsub("-", "_").downcase.split(" ")
+  # end
 
   def self.category_fields(name)
     ItemField.where(field_name: ItemField.category_name(name))
+    #ItemField.category_name(name).map {|field| ItemField.where(field_name: field)}.flatten
   end
 end
