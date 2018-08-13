@@ -109,7 +109,7 @@ class ItemField < ApplicationRecord
   # end
 
   def self.category_fields(name)
-    ItemField.where(field_name: ItemField.category_name(name))
-    #ItemField.category_name(name).map {|field| ItemField.where(field_name: field)}.flatten
+    #ItemField.where(field_name: ItemField.category_name(name))
+    ItemField.category_name(name).map {|field| ItemField.where(field_name: field)}.flatten
   end
 end
