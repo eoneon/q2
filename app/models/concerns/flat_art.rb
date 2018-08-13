@@ -18,8 +18,4 @@ module FlatArt
   def original_base
     %w(mounting_type original_kind substrate_type signature_kind certificate_kind)
   end
-
-  def self.original_painting
-    %w(mounting_type original_kind paint_medium substrate_type canvas_kind paper_kind board_kind signature_kind certificate_kind)
-  end
 end

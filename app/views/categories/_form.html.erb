@@ -1,7 +1,13 @@
 <%= form_for @category do |f| %>
+<%#= @category.fields_arr %>
   <div class="field">
     <%= f.label :name %><br>
     <%= f.select :name, options_for_select(Category.category_dropdown, selected: @category.name), {:include_blank => true}  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fields %><br>
+    <%= f.text_field :fields, class: "form-control"   %>
   </div>
 
   <h4>Associated Fields:</h4>

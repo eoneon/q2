@@ -1,6 +1,6 @@
 <%= form_for @item, :html => {:class => 'form', :id => 'item_form'} do |f| %>
   <div>
-    <%= @item.field_values.pluck(:name) %>
+    <%#= @item.parent_type_value("mounting_type") %>
   </div>
 
   <div class="form-row">

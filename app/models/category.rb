@@ -8,4 +8,8 @@ class Category < ApplicationRecord
   def self.category_dropdown
     ["Original Painting", "One-of-a-Kind Mixed-Media", "Original Sketch", "Limited Edition Print", "Limited Edition Print with Leafing", "Limited Edition Print with Remarque", "Limited Edition Print with Leafing and Remarque", "Print", "Print with Leafing", "Print with Remarque", "Print with Leafing and Remarque", "Hand-Blown Glass", "Hand-Made Ceramic", "Limited Edition Sculpture", "Sculpture"]
   end
+
+  def fields_arr
+    fields.squish.split(" ")
+  end
 end
