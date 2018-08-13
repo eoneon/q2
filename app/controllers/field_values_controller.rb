@@ -39,12 +39,11 @@ class FieldValuesController < ApplicationController
 
     if @field_value.save
       flash[:notice] = "field_value was updated successfully."
-      #redirect_to action: :index
+      render :edit
     else
       flash.now[:alert] = "Error updated field_value. Please try again."
-      #render :edit
+      render :edit
     end
-    render :edit
   end
 
   def destroy

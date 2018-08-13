@@ -1,6 +1,6 @@
 <%= form_for @item, :html => {:class => 'form', :id => 'item_form'} do |f| %>
   <div>
-    <%#= @item.parent_type_value("mounting_type") %>
+    <%= @item.field_value_names %>
   </div>
 
   <div class="form-row">

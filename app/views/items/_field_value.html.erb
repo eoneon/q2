@@ -1,6 +1,6 @@
 <%= hidden_field_tag "item[field_value_ids][]", nil %>
-<%#= item.category.fields_arr .map {|item_field| "#{item_field.field_name}" } %>
-<% item.category.item_fields.each_with_index do |item_field, i| %>
+<% item.category_fields.each do |item_field| %>
+<%# item.category.item_fields.each_with_index do |item_field, i| %>
   <%# next if ["canvas_kind", "paper_kind", "board_kind"].include?(item_field.field_name) && (item.substrate_type.empty? || item.substrate_type[0] != item_field.field_name.gsub("_kind", "")) %>
   <% if ["original_kind", "handmade_medium", "handblown_medium"].include?(item_field.field_name) %>
     <div class="hidden">
@@ -10,8 +10,10 @@
     <div class="form-row">
       <div class="col">
         <%= label_tag item_field.field_name %><br>
-        <%= select_tag "item[field_value_ids][]", options_from_collection_for_select(item_field.field_values, :id, :name, selected: item.field_value_ids[i]), { :include_blank => true } %>
+        <%#= select_tag "item[field_value_ids][]", options_from_collection_for_select(item_field.field_values, :id, :name, selected: item.field_value_ids[i]), { :include_blank => true } %>
+        <%= select_tag "item[field_value_ids][]", options_from_collection_for_select(item_field.field_values, :id, :name, selected: item.selected_field_value(item_field)[0]), { :include_blank => true } %>
         <%#= select_tag "item[field_value_ids][]", options_from_collection_for_select(item_field.field_values, :id, :name, selected: 29)  %>
+        <%= item.selected_field_value(item_field) %>
       </div>
     </div>
   <% end %>
