@@ -35,7 +35,7 @@ class ItemsController < ApplicationController
     @item.assign_attributes(item_params)
 
     if @item.save
-      flash[:notice] = "Item was updated successfully."
+      #flash[:notice] = "Item was updated successfully."
     else
       flash.now[:alert] = "Error updated item. Please try again."
     end
