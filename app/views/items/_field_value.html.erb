@@ -4,6 +4,12 @@
     <div class="hidden">
       <%= select_tag "item[field_value_ids][]", options_from_collection_for_select(item_field.field_values, :id, :name, selected: FieldValue.default_id(item.category.name)) %>
     </div>
+  <% elsif item_field.field_values.count == 0 %>
+    <div class="form-row">
+      <%= f.fields_for :properties, OpenStruct.new(item.properties) do |builder| %>
+        <%= render "items/item_fields/#{item_field.field_type}", item: item,  item_field: item_field, f: builder %>
+      <% end %>
+    </div>
   <% else %>
     <div class="form-row">
       <div class="col">
@@ -13,5 +19,3 @@
     </div>
   <% end %>
 <% end %>
-
-<!-- elsif %w(number_field text_area).include?(item_field.field_type) -->
