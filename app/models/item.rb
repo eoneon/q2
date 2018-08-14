@@ -48,7 +48,6 @@ class Item < ApplicationRecord
       end
     end
     fields.flatten.map {|field_name| ItemField.where(field_name: field_name)}.flatten
-    #fields.flatten
   end
 
   def selected_field_value(item_field)
