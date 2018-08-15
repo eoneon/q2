@@ -8,6 +8,10 @@ class FieldValue < ApplicationRecord
   scope :hand_blown_glass, -> {where(name: "hand blown glass")}
   scope :hand_made_ceramic, -> {where(name: "hand made ceramic")}
 
+  def self.field_keys
+    %w(parent title body both attribute)
+  end
+
   def self.default_id(category_name)
     self.public_send(category_name.gsub("-", "_").downcase.split(" ").first).pluck(:id).first
   end

@@ -3,5 +3,23 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
+  <% FieldValue.field_keys.each do |field| %>
+    <div class="form-row">
+      <%= f.fields_for :properties, OpenStruct.new(field_value.properties) do |ff| %>
+        <% if field == "parent" %>
+          <div class="col-auto">
+            <%= ff.label field %><br>
+            <%= ff.text_field field, value: item_field.field_name  %>
+          </div>
+        <% else %>
+          <div class="col-auto">
+            <%= ff.label field %><br>
+            <%= ff.text_field field  %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
   <%= f.submit "Save" %>
 <% end %>
