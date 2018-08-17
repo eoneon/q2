@@ -1,0 +1,5 @@
+<%= form_for [item_field, FieldChain.new] do |f| %>
+<%#= form_for FieldChain.new do |f| %>
+  <%= f.collection_select :sub_field_id, ItemField.all, :id, :field_name, {class: 'form-control', include_blank: true} %>
+  <%= f.submit "Add Subfield", class: 'btn btn-default pull-right' %>
+<% end %>

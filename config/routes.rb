@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :item_fields do
+    resources :field_chains, only: [:create, :destroy]
     collection do
       post :import
     end
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
       post :import
     end
   end
+
+  #resources :field_chains, only: [:create, :destroy]
 
   resources :items do
     resources :field_values, except: [:index]
