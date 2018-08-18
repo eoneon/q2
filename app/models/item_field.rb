@@ -9,8 +9,6 @@ class ItemField < ApplicationRecord
   has_many :inverse_field_chains, class_name: 'FieldChain', foreign_key: 'sub_field_id'
   has_many :parent_fields, through: :inverse_field_chains, source: :item_field
 
-  accepts_nested_attributes_for :field_chains, reject_if: proc {|attrs| attrs['sub_field_id'].blank?}, allow_destroy: true
-
   has_many :field_values, dependent: :destroy
 
   def self.to_csv(fields = column_names, options = {})
