@@ -10,6 +10,7 @@
   </thead>
 
   <h4>Build New Item Field</h4>
+  <%= render 'categories/category_fields_form' %>
   <p><%= link_to "New Field", new_category_item_field_path(@category) %></p>
   <tbody>
     <% @category.item_fields.each do |item_field| %>

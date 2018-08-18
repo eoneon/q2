@@ -1,5 +1,5 @@
 class ItemFieldsController < ApplicationController
-  
+
   def index
     @item_fields = ItemField.all
     respond_to do |format|
@@ -35,10 +35,11 @@ class ItemFieldsController < ApplicationController
     if @item_field.save
       field_group.save if params[:category_id]
       flash[:notice] = "ItemField was saved successfully."
+      redirect_to @category
     else
       flash.now[:alert] = "Error creating ItemField. Please try again."
+      render :new
     end
-    render :new
   end
 
   def update
