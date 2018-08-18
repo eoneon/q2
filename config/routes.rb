@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :categories do
-    resources :item_fields, except: [:index]
+    resources :category_fields, only: [:create]
   end
 
   resources :item_fields do

@@ -1,5 +1,4 @@
 class ItemFieldsController < ApplicationController
-  
   def index
     @item_fields = ItemField.all
     respond_to do |format|
