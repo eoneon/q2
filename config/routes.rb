@@ -3,6 +3,10 @@ Rails.application.routes.draw do
     resources :item_fields, except: [:index]
   end
 
+  resources :categories do
+    resources :field_groups, only: [:create, :destroy]
+  end
+
   resources :item_fields do
     resources :field_values, except: [:index]
   end
@@ -19,8 +23,6 @@ Rails.application.routes.draw do
       post :import
     end
   end
-
-  #resources :field_chains, only: [:create, :destroy]
 
   resources :items do
     resources :field_values, except: [:index]

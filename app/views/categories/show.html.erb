@@ -2,6 +2,8 @@
 
 <p><%= link_to "Edit: #{@category.name}", edit_category_path(@category) %> | <%= link_to "Return to Category List", categories_path %></p><br>
 
+<h4>Create New Item Field</h4>
+<p><%= link_to "New Field", new_category_item_field_path(@category) %></p>
 <p><% @category.item_fields %></p>
 <table class="table table-striped table-hover">
   <thead>
@@ -9,8 +11,6 @@
     <th>Field type</th>
   </thead>
 
-  <h4>Build New Item Field</h4>
-  <p><%= link_to "New Field", new_category_item_field_path(@category) %></p>
   <tbody>
     <% @category.item_fields.each do |item_field| %>
       <tr>
