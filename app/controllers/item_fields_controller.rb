@@ -1,4 +1,5 @@
 class ItemFieldsController < ApplicationController
+  
   def index
     @item_fields = ItemField.all
     respond_to do |format|
@@ -32,7 +33,7 @@ class ItemFieldsController < ApplicationController
       @item_field = ItemField.new(item_field_params)
     end
     if @item_field.save
-      field_group.save if params[:category_id]  
+      field_group.save if params[:category_id]
       flash[:notice] = "ItemField was saved successfully."
     else
       flash.now[:alert] = "Error creating ItemField. Please try again."
