@@ -1,4 +1,4 @@
-<h1>Edit: <%= @category.name %></h1>
-<p><%= link_to "category list", categories_path %></p>
-<p>Edit: <%#= ItemField.category_name(@category.name) %></p>
+<h1>Category#Edit: <%= @category.name %></h1>
+<p><%= link_to "category list", categories_path %> | <%= link_to "Show", category_path(@category) %></p>
+<!-- <p>Edit: <%#= ItemField.category_name(@category.name) %></p> -->
 <%= render 'categories/form' %>
