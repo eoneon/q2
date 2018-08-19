@@ -58,6 +58,6 @@ class CategoryFieldsController < ApplicationController
   end
 
   def category_params
-    params.require(:field_group).permit!
+    params.require(:category_field).permit!
   end
 end
